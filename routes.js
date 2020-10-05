@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require("./middleware/async")
 var keywordExtractor = require("keyword-extractor")
-const GSAPI = require('./service/GSAPI')
+const GoogleSearchAPI = require('./service/GoogleSearchAPI')
 const router = express.Router()
 
 router.route("/bot_talks").get(asyncHandler(async (req, res, next) => {
@@ -31,23 +31,23 @@ router.route("/bot_talks").get(asyncHandler(async (req, res, next) => {
       data: "Hey"
     })
   }else if(request === "!google"){ // get search query and add history
-    const googleSearchResults = await GSAPI.makeSearch(value)
+    const googleSearchResults = await GoogleSearchAPI.makeSearchV2(value)
     // const searchSave = await addSearchResults(googleSearchResults)
     // const keywordMapSave = await addKeywordsMap(googleSearchResults, keywords)
-    if(!searchSave || !keywordMapSave) {
-      res.status(400).json({
-        success: false,
-        error: "Unable to store results and map"
-      })
-    }else{
+    // if(!searchSave || !keywordMapSave) {
+    //   res.status(400).json({
+    //     success: false,
+    //     error: "Unable to store results and map"
+    //   })
+    // }else{
       res.status(200).json({
         success: true,
         data: {
           success: true,
-          results: googleSearchResults
+          results: JSON.stringify(googleSearchResults)
         }
       })
-    }
+    // }
   }else if(request === "!recent"){ // handle history fetch
     res.status(200).json({
       success: true,
