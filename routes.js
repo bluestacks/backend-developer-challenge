@@ -44,7 +44,7 @@ router.route("/bot_talks").get(asyncHandler(async (req, res, next) => {
         success: true,
         data: {
           success: true,
-          results: JSON.stringify(googleSearchResults)
+          results: googleSearchResults
         }
       })
     // }

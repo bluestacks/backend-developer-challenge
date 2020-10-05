@@ -21,8 +21,8 @@ class GoogleSearchAPI{
         }
       })
       console.log("GoogleSearchAPI service | getGoogleSearchAPI | response | data : ", response.data)
-      if(response){
-        return response
+      if(response && response.status === 200 && response.data.items){
+        return response.data.items
       } else {
         return null
       }
@@ -34,10 +34,7 @@ class GoogleSearchAPI{
   
 
   static handleErrors(err){
-
-    // if(GoogleSearchAPI.debug){
-      console.log("Data: ", err)
-    // }
+    console.log("Error: ", err)
   }
 }
 
