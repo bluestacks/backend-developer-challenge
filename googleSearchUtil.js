@@ -1,5 +1,20 @@
-const { query } = require("express")
+const GSR = require('google-search-results-nodejs')
+let googleSearchClient = new GSR.GoogleSearchResults(process.env.GOOGLE_SEARCH_API_KEY)
 
+var parameter = {
+    q: "Coffee",
+    location: "Austin, Texas, United States",
+    hl: "en",
+    gl: "us",
+    google_domain: "www.google.com",
+};
+
+var callback = function(data) {
+  console.log(data)
+}
+
+// Show result as JSON
+client.json(parameter, callback)
 // singleton class to instantiate google search credentials caller
 class GoogleSearch{
   constructor(){
@@ -13,7 +28,7 @@ class GoogleSearch{
   }
 
   static makeSearch = async (query) => {
-    
+
   }
 }
 
