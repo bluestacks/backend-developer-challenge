@@ -4,9 +4,12 @@ const asyncHandler = require("./middleware/async")
 const router = express.Router()
 
 router.route("/query").get(asyncHandler(async (req, res, next) => {
+  console.log("[Routes] Query recieved! ", req.params)
   const { query } = req.params
   const trimmedQ = query.trim()
   const [request, value] = trimmedQ.split(" ", 1)
+  console.log("[Routes] Query parsed! Parsed:", {request, value})
+
   // handling requirement 1
   if(request.toLowerCase() === "hey"){
     res.status(200).json({
@@ -35,3 +38,5 @@ router.route("/query").get(asyncHandler(async (req, res, next) => {
     })
   }
 }))
+
+module.exports = router
