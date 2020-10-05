@@ -22,6 +22,8 @@ const app = express()
 //   app.use(morgan('dev'))
 // }
 
+app.use(express.json());
+
 // Mount routers
 app.use('/api/v1', queryRouter)
 
