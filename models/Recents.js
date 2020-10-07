@@ -12,4 +12,4 @@ const RecentsSchema = new mongoose.Schema({
   },
 }, { timestamps: true })
 
-module.exports = mongoose.model('RecentResultsSchema', RecentsSchema)
+module.exports = mongoose.model('RecentResults', RecentsSchema)

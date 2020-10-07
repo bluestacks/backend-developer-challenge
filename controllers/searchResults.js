@@ -64,7 +64,6 @@ const googleSearch = async (query) => {
     const keywordMap = []
     keywords.forEach(keyword=>keywordMap.push({keyword, "results": []}))
     const awaitedMappedResults = await addResult(googleSearchResultsMapped, keywordMap)
-    console.log("Here: ", awaitedMappedResults)
     if(awaitedMappedResults){
       console.log("[Google search] Search results added into database")
     }else{
