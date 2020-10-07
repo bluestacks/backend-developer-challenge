@@ -30,7 +30,7 @@ const fetchRecentHistory = async (queryList) => {
       console.log("[Fetch recent history] Fetched recent history for query: ", results)  
       if(results) searchResults.push(...results)
     }
-    const sortedSearchResults = searchResults.sort((a,b)=>a.createdAt === b.createdAt? a.title.localeCompare(b.title): a.createdAt - b.createdAt)
+    const sortedSearchResults = searchResults.sort((a,b)=>a.createdAt === b.createdAt? b.title.localeCompare(a.title): b.createdAt - a.createdAt)
 
     console.log("[Fetch recent history] SortedSearchResults :", sortedSearchResults)  
     
