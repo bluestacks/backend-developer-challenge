@@ -22,7 +22,7 @@ class GoogleSearchAPI{
       })
       console.log("GoogleSearchAPI service | getGoogleSearchAPI | response | data : ", response.data)
       if(response && response.status === 200 && response.data.items){
-        return response.data.items
+        return response.data.items.slice(0, 5)
       } else {
         return null
       }
