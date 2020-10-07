@@ -32,6 +32,7 @@ const messageHandler =  async (message) => {
     return reply
   }else if(COMMAND_TYPE === "!recent"){
     const results = await fetchRecentHistory(queryList)
+    if(results.length === 0) return "Wow! So empty. Because a search with this keyword hasn't been made yet."
     const reply = recentHistoryReply(query, results)
     return reply
   }else{
