@@ -72,7 +72,7 @@ const googleSearch = async (query) => {
     
     return googleSearchResultsMapped
   }catch(e){
-    console.log("Error occurred: ", e)
+    console.log("[Fetch recent history] Error occurred: ", e)
     return "Unable to fetch results due to error"
   }
 }

@@ -31,6 +31,7 @@
     "google-search-results-nodejs": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "keyword-extractor": "0.0.19",
+    "lru-cache": "^6.0.0",
     "mongoose": "^5.10.7",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
