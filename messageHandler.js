@@ -1,5 +1,13 @@
+const googleSearch = require('./controllers/searchResults');
 const searchResults = require('./controllers/searchResults');
 
+const googleSearchReply = (query, results) => 
+`__Google Search__
+_Query_: "${query}"
+>>> ${results.map(res=>`
+- __**${res.title}**__
+${res.link}
+${res.snippet}`)}`
 
 const messageHandler =  async (message) => {
   console.log("[messageHandler] Message recieved! ", message)
@@ -12,12 +20,7 @@ const messageHandler =  async (message) => {
   // handling requirement 1
   if(COMMAND_TYPE === "!google"){ // get search query and add history
     const results = await searchResults(query)
-    let reply = `__Google Search__
-_Query_: "${query}"
->>> ${results.map(res=>`
-- __**${res.title}**__
-${res.link}
-${res.snippet}`)}`
+    let reply = googleSearchReply(query, results)
     return reply
   }else if(COMMAND_TYPE === "!recent"){
     return

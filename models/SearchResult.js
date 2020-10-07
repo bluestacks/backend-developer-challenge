@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const SearchResultSchema = new mongoose.Schema({
   title: {
@@ -17,6 +17,6 @@ const SearchResultSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please add a snippet']
   },
-})
+}, { timestamps: true })
 
-module.exports = mongoose.model('SearchResult', SearchResultSchema);
+module.exports = mongoose.model('SearchResult', SearchResultSchema)

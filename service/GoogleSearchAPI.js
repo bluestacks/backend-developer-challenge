@@ -20,7 +20,8 @@ class GoogleSearchAPI{
           cx: process.env.GOOGLE_SEARCH_CX,
         }
       })
-      console.log("GoogleSearchAPI service | getGoogleSearchAPI | response | data : ", response.data)
+      // console.log("GoogleSearchAPI service | getGoogleSearchAPI | response | data : ", response.data)
+      console.log("GoogleSearchAPI service | getGoogleSearchAPI | Google search results fetched!!!")
       if(response && response.status === 200 && response.data.items){
         return response.data.items.slice(0, 5)
       } else {
