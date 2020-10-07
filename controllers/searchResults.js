@@ -14,7 +14,8 @@ const KW_CONFIGS = { // extract keywords in the query value
 const addResult = async (searchResults, keywordMap) => {
   try{
 
-    searchResults.forEach(async (res, index) => {
+    for(let i=0; i<searchResults.length; i++){
+      const res = searchResults[i]
       const foundElem = await SearchResult.findOne({title: res.title})
       if(!foundElem){
         const result = await SearchResult.create(res)
@@ -22,13 +23,15 @@ const addResult = async (searchResults, keywordMap) => {
         console.log(`[Google search] Search result: "${res.title}" added into database`)
         gsResAdded = true
       }else{
-        console.log("Found #"+index+": ", foundElem.title)
+        console.log("Found #"+i+": ", foundElem.title)
         keywordMap.forEach(mapped=>mapped.results.push(foundElem._id))
         console.log(`[Google search] Search result: "${res.title}" already present in database`)
       }
-    })
-
-    keywordMap.forEach(async (keywordRec, index) =>{
+    }
+    console.log("[Google search] Adding keyword map | Map:", keywordMap)    
+    for(let i=0; i<keywordMap.length; i++){
+      const keywordRec = keywordMap[i]
+      console.log(`[Google search] Adding keyword map for word: "${keywordRec.keyword}" Map:`,  keywordRec)
       const foundElem = await Recents.findOne({keyword: keywordRec.keyword})
       if(!foundElem){
         const result = await Recents.create(keywordRec)
@@ -37,7 +40,7 @@ const addResult = async (searchResults, keywordMap) => {
         const result = await Recents.update(foundElem._id, {...foundElem, results: [...foundElem.results, ...keywordRec.results]})
         console.log(`[Google search] Updated keyword map for word: "${result.keyword}" added into database`)
       }
-    })
+    }
 
     return true
   }catch(e){
